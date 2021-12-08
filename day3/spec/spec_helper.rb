@@ -100,3 +100,4 @@ RSpec.configure do |config|
 end
 
 require_relative '../lib/power_consumption'
+require_relative '../lib/life_support_rating'
