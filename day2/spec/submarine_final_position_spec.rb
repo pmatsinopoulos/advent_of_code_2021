@@ -35,18 +35,18 @@ RSpec.describe 'submarine_final_position' do
   context 'when case3.txt' do
     let(:file) { 'case3.txt' }
 
-    it_behaves_like 'calculating correct position', 25
+    it_behaves_like 'calculating correct position', 0
   end
 
   context 'when case4.txt' do
     let(:file) { 'case4.txt' }
 
-    it_behaves_like 'calculating correct position', 150
+    it_behaves_like 'calculating correct position', 900
   end
 
   context 'when final_case.txt' do
     let(:file) { 'final_case.txt' }
 
-    it_behaves_like 'calculating correct position', 1690020
+    it_behaves_like 'calculating correct position', 1408487760
   end
 end
