@@ -54,7 +54,7 @@ def build_boards(array_of_lines)
   while left < array_of_lines.size - 1
     right = left + 1
 
-    while !array_of_lines[right].strip.empty?
+    while right < array_of_lines.length && !array_of_lines[right].strip.empty?
       right += 1
     end
     # right points to an empty line
