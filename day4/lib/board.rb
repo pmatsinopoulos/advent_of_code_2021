@@ -24,6 +24,15 @@ class Board
     sum
   end
 
+  def wins?
+    matrix.length.times do |i|
+      return true if (0...matrix.length).to_a.all? { |j| marked_numbers.index([i, j]) }
+      return true if (0...matrix.length).to_a.all? { |j| marked_numbers.index([j, i]) }
+    end
+
+    false
+  end
+
   attr_reader :marked_numbers, :matrix
 
   private

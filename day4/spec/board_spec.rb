@@ -90,6 +90,63 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe '#wins?' do
+    context 'when a board is given' do
+      let!(:board) do
+        input = <<~INPUT
+          
+          22 13 17 11  0
+           8  2 23  4 24
+          21  9 14 16  7
+           6 10  3 18  5
+           1 12 20 15 19
+
+        INPUT
+        Board.new(lines: input)
+      end
+
+      context 'when some numbers are marked but not a complete row or column' do
+        before do
+          board.mark_number(13)
+          board.mark_number(3)
+        end
+
+        it 'returns false' do
+          expect(board.wins?).to eq(false)
+        end
+      end
+
+      context 'when the numbers of a row are marked' do
+        before do
+          board.mark_number(21)
+          board.mark_number(9)
+          board.mark_number(14)
+          board.mark_number(16)
+          board.mark_number(7)
+        end
+
+        it 'returns true' do
+          expect(board.wins?).to eq(true)
+        end
+      end
+
+      context 'when the numbers of a column are marked' do
+        before do
+          board.mark_number(22)
+          board.mark_number(8)
+          board.mark_number(21)
+          board.mark_number(6)
+          board.mark_number(1)
+        end
+
+        it 'returns true' do
+          expect(board.wins?).to eq(true)
+        end
+      end
+
+    end
+  end
 end
 
 RSpec.describe '#build_boards' do
