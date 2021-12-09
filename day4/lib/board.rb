@@ -3,9 +3,18 @@
 class Board
   def initialize(lines:)
     build_from_lines(lines)
+    @marked_numbers = []
   end
 
-  attr_reader :matrix
+  def mark_number(number)
+    matrix.each_with_index do |matrix_line, i|
+      matrix_line.each_with_index do |current_number, j|
+        @marked_numbers.push([i, j]) if current_number == number && @marked_numbers.index([i, j]).nil?
+      end
+    end
+  end
+
+  attr_reader :marked_numbers, :matrix
 
   private
 

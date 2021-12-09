@@ -24,6 +24,46 @@ RSpec.describe Board do
       ]
     )
   end
+
+  describe '#mark_number' do
+    context 'when a board is given' do
+      let!(:board) do
+        input = <<~INPUT
+          
+          22 13 17 11  0
+           8  2 23  4 24
+          21  9 14 16  7
+           6 10  3 18  5
+           1 12 20 15 19
+
+        INPUT
+        Board.new(lines: input)
+      end
+
+      context 'when number is 16' do
+        it 'marks the 16 but not the others' do
+          board.mark_number(16)
+
+          expect(board.marked_numbers).to eq([[2, 3]]) # position of number 16
+        end
+
+        it 'marks the 16 only once even if called twice' do
+          board.mark_number(16)
+          board.mark_number(16)
+
+          expect(board.marked_numbers).to eq([[2, 3]]) # position of number 16
+        end
+      end
+
+      context 'when number is not in the matrix' do
+        it 'does not mark any number' do
+          board.mark_number(-1)
+
+          expect(board.marked_numbers).to eq([]) # position of number 16
+        end
+      end
+    end
+  end
 end
 
 RSpec.describe '#build_boards' do
