@@ -8,6 +8,10 @@ def bingo_winner_final_score(file_contents:)
   numbers.each do |number|
     boards.each do |board|
       board.mark_number(number)
+
+      return board.sum_of_unmarked * number if board.wins?
     end
   end
+
+  0
 end

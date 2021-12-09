@@ -64,6 +64,32 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe '#sum_of_unmarked' do
+    context 'when a board is given' do
+      let!(:board) do
+        input = <<~INPUT
+          
+          22 13 17 11  0
+           8  2 23  4 24
+          21  9 14 16  7
+           6 10  3 18  5
+           1 12 20 15 19
+
+        INPUT
+        Board.new(lines: input)
+      end
+
+      before do
+        board.mark_number(13)
+        board.mark_number(3)
+      end
+
+      it 'returns the sum of unmarked' do
+        expect(board.sum_of_unmarked).to eq(board.matrix.flatten.sum - 13 - 3)
+      end
+    end
+  end
 end
 
 RSpec.describe '#build_boards' do

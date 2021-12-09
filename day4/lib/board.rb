@@ -14,6 +14,16 @@ class Board
     end
   end
 
+  def sum_of_unmarked
+    sum = 0
+    matrix.each_with_index do |matrix_line, i|
+      matrix_line.each_with_index do |current_number, j|
+        sum += current_number unless marked_numbers.index([i, j])
+      end
+    end
+    sum
+  end
+
   attr_reader :marked_numbers, :matrix
 
   private
