@@ -18,12 +18,12 @@ RSpec.describe 'bingo_winner_final_score' do
   context 'when case1' do
     let(:filename) { 'case1.txt' }
 
-    it_behaves_like 'calculating the bingo winner final score being', 4512
+    it_behaves_like 'calculating the bingo winner final score being', 1_924
   end
 
   context 'when final_case' do
     let(:filename) { 'final_case.txt' }
 
-    it_behaves_like 'calculating the bingo winner final score being', 22_680
+    it_behaves_like 'calculating the bingo winner final score being', 16_168
   end
 end
