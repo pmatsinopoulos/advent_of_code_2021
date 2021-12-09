@@ -20,4 +20,10 @@ RSpec.describe 'bingo_winner_final_score' do
 
     it_behaves_like 'calculating the bingo winner final score being', 4512
   end
+
+  context 'when final_case' do
+    let(:filename) { 'final_case.txt' }
+
+    it_behaves_like 'calculating the bingo winner final score being', 22_680
+  end
 end
