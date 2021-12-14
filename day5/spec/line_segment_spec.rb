@@ -8,5 +8,8 @@ RSpec.describe LineSegment do
 
     expect(line_segment.end_point.x).to eq(5)
     expect(line_segment.end_point.y).to eq(9)
+
+    expect(line_segment.x_max).to eq(5)
+    expect(line_segment.y_max).to eq(9)
   end
 end

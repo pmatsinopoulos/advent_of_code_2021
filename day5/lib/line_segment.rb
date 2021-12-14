@@ -14,6 +14,14 @@ class LineSegment
     self.start_point == value.start_point && self.end_point == value.end_point
   end
 
+  def x_max
+    [start_point.x, end_point.x].max
+  end
+
+  def y_max
+    [start_point.y, end_point.y].max
+  end
+
   attr_reader :end_point, :start_point
 
   private
