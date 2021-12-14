@@ -22,6 +22,9 @@ RSpec.describe LinesOfVents do
       expect(line_segments[ 7]).to eq(LineSegment.new(line_segment_spec_str: '3,4 -> 1,4'))
       expect(line_segments[ 8]).to eq(LineSegment.new(line_segment_spec_str: '5,5 -> 8,2'))
       expect(line_segments[ 9]).to eq(LineSegment.new(line_segment_spec_str: '0,0 -> 8,8'))
+
+      expect(lines_of_vents.x_max).to eq(9)
+      expect(lines_of_vents.y_max).to eq(9)
     end
   end
 end
