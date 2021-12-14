@@ -102,3 +102,4 @@ end
 $LOAD_PATH.unshift('./day5/lib')
 
 require 'line_segment'
+require 'lines_of_vents'

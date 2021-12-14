@@ -10,6 +10,10 @@ class LineSegment
     self.end_point = Point.new(**parsed_line[:end_point])
   end
 
+  def ==(value)
+    self.start_point == value.start_point && self.end_point == value.end_point
+  end
+
   attr_reader :end_point, :start_point
 
   private
