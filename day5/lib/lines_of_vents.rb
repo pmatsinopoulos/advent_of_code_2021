@@ -9,16 +9,29 @@ class LinesOfVents
   def number_of_points_with_lines_overlap
     initial_area = Array.new(x_max + 1) { Array.new(y_max + 1) { 0 } }
     result = {}
-    line_segments.select { |ls| ls.start_point.x == ls.end_point.x || ls.start_point.y == ls.end_point.y }.each do |line_segment|
-      i = line_segment.start_point.x
-      while i <= line_segment.end_point.x
-        j = line_segment.start_point.y
-        while j <= line_segment.end_point.y
-          initial_area[j][i] += 1
-          result[{ j: j, i: i }] = true if initial_area[j][i] >= 2
-          j += 1
+    line_segments.each do |line_segment|
+      if line_segment.vertical? || line_segment.horizontal?
+        i = line_segment.start_point.x
+        while i <= line_segment.end_point.x
+          j = line_segment.start_point.y
+          while j <= line_segment.end_point.y
+            initial_area[j][i] += 1
+            result[{ i: i, j: j }] = true if initial_area[j][i] >= 2
+            j += 1
+          end
+          i += 1
         end
-        i += 1
+      elsif line_segment.diagonal?
+        i = line_segment.start_point.x
+        j = line_segment.start_point.y
+        y_step = 1
+        y_step = -1 if line_segment.end_point.y < line_segment.start_point.y
+        while i <= line_segment.end_point.x && (y_step == 1 ? j <= line_segment.end_point.y : j >= 0)
+          initial_area[j][i] += 1
+          result[{ i: i, j: j }] = true if initial_area[j][i] >= 2
+          i += 1
+          j += y_step
+        end
       end
     end
     result.keys.count

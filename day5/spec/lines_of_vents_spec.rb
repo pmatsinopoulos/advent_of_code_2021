@@ -12,7 +12,7 @@ RSpec.describe LinesOfVents do
       expect(lines_of_vents.x_max).to eq(9)
       expect(lines_of_vents.y_max).to eq(9)
       
-      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(5)
+      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(12)
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe LinesOfVents do
       expect(lines_of_vents.x_max).to eq(9)
       expect(lines_of_vents.y_max).to eq(9)
 
-      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(5)
+      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(12)
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe LinesOfVents do
     it 'creates a lines of vents from a string containing the line segment specs' do
       lines_of_vents = LinesOfVents.new(spec_str: spec_str)
 
-      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(5306)
+      expect(lines_of_vents.number_of_points_with_lines_overlap).to eq(17787)
     end
   end
 end
