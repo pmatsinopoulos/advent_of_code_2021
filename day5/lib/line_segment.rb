@@ -8,6 +8,11 @@ class LineSegment
     parsed_line = parse_line_segment_spec_str
     self.start_point = Point.new(**parsed_line[:start_point])
     self.end_point = Point.new(**parsed_line[:end_point])
+    if self.end_point < self.start_point
+      temp_point = self.start_point
+      self.start_point = self.end_point
+      self.end_point = temp_point
+    end
   end
 
   def ==(value)

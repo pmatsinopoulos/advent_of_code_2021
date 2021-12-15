@@ -6,6 +6,24 @@ class LinesOfVents
     self.y_max = calculate_maximum_y
   end
 
+  def number_of_points_with_lines_overlap
+    initial_area = Array.new(x_max + 1) { Array.new(y_max + 1) { 0 } }
+    result = {}
+    line_segments.select { |ls| ls.start_point.x == ls.end_point.x || ls.start_point.y == ls.end_point.y }.each do |line_segment|
+      i = line_segment.start_point.x
+      while i <= line_segment.end_point.x
+        j = line_segment.start_point.y
+        while j <= line_segment.end_point.y
+          initial_area[j][i] += 1
+          result[{ j: j, i: i }] = true if initial_area[j][i] >= 2
+          j += 1
+        end
+        i += 1
+      end
+    end
+    result.keys.count
+  end
+
   attr_reader :line_segments, :x_max, :y_max
 
   private
