@@ -27,6 +27,20 @@ class LineSegment
     [start_point.y, end_point.y].max
   end
 
+  def vertical?
+    start_point.x == end_point.x
+  end
+
+  def horizontal?
+    start_point.y == end_point.y
+  end
+
+  def diagonal?
+    return false if start_point.y == end_point.y
+
+    (start_point.x - end_point.x).abs / (start_point.y - end_point.y).abs == 1
+  end
+
   attr_reader :end_point, :start_point
 
   private
