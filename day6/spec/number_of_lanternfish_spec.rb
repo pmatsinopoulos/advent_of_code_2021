@@ -1,3 +1,5 @@
+require 'benchmark'
+
 RSpec.describe 'number_of_lanternfish' do
   let(:number) { number_of_lanternfish(case1, number_of_days) }
 
@@ -25,13 +27,17 @@ RSpec.describe 'number_of_lanternfish' do
       { 16 => 21 },
       { 17 => 22 },
       { 18 => 26 },
-      { 80 => 5934 }
+      { 80 => 5934 },
+      { 256 => 26_984_457_539 },
     ].each do |input_and_output|
       context "then after #{input_and_output.keys.first} days" do
         let(:number_of_days) { input_and_output.keys.first }
 
         it "the number of lanternfish will be #{input_and_output.values.first}" do
-          result = number
+          result = nil
+          puts Benchmark.realtime {
+            result = number
+          }
           expect(result).to eq(input_and_output.values.first)
           # expect(result).to eq([3, 4, 3, 1, 2])
         end
@@ -45,15 +51,17 @@ RSpec.describe 'number_of_lanternfish' do
     end
 
     [
-      { 80 => 362_740 }
+      { 256 => 1_644_874_076_764 }
     ].each do |input_and_output|
       context "then after #{input_and_output.keys.first} days" do
         let(:number_of_days) { input_and_output.keys.first }
 
         it "the number of lanternfish will be #{input_and_output.values.first}" do
-          result = number
+          result = nil
+          puts Benchmark.realtime {
+            result = number
+          }
           expect(result).to eq(input_and_output.values.first)
-          # expect(result).to eq([3, 4, 3, 1, 2])
         end
       end
     end
